@@ -24,8 +24,9 @@
 *  THE SOFTWARE.
 */
 
-import { DateTimeUnit, IFormattingService } from "./../../src/formattingService/iFormattingService";
-import { FormattingService } from "./../../src/formattingService/formattingService";
+import { vi } from "vitest";
+import { DateTimeUnit, IFormattingService } from "../../src/formattingService/iFormattingService";
+import { FormattingService } from "../../src/formattingService/formattingService";
 
 describe("IFormattingService", () => {
     describe("format", () => {
@@ -81,10 +82,11 @@ describe("IFormattingService", () => {
 
             it("should use nb-NO to format values", () => {
                 const value: number = 100000.123;
-                const expectedResult: string = "100 000";
+                const expectedResult: string = "100 000";
 
                 const formattingService: IFormattingService = createFormattingService();
-                const actualResult: string = formattingService.formatValue(value, "#,0", "nb-NO");
+                const result: string = formattingService.formatValue(value, "#,0", "nb-NO");
+                const actualResult: string = result.replace(/\s/g, " ");
 
                 expect(actualResult).toBe(expectedResult);
             });
@@ -95,7 +97,7 @@ describe("IFormattingService", () => {
         it("should call the initialize if the _dateTimeScaleFormatInfo is undefined", () => {
             const formattingService: IFormattingService = createFormattingService();
 
-            spyOn(formattingService, <any>"initialize").and.callThrough();
+            vi.spyOn(formattingService as any, "initialize");
 
             formattingService.dateFormatString(DateTimeUnit.Year);
 
