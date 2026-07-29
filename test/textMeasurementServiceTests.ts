@@ -34,6 +34,14 @@ import verifyEllipsisActive from "./verifyEllipsisActive";
 
 describe("Text measurement service", () => {
     let Ellipsis = "...";
+    let attachedDomNodes: HTMLElement[] = [];
+
+    afterEach(() => {
+        for (const node of attachedDomNodes)
+            node.remove();
+
+        attachedDomNodes = [];
+    });
 
     describe("measureSvgTextElementWidth", () => {
         it("svg text element", () => {
@@ -478,6 +486,7 @@ describe("Text measurement service", () => {
         dom.style.visibility = "hidden";
         dom.append(element);
         document.body.appendChild(dom);
+        attachedDomNodes.push(dom);
         return dom;
     }
 

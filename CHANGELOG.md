@@ -4,6 +4,7 @@
 * Test runner migrated from Karma + Jasmine to Vitest.
 * Tests now run in a real browser via Vitest browser mode (Playwright/Chromium).
 * Build migrated from Webpack to the TypeScript compiler (`tsc`); `globalize` sources moved under `src/`.
+* Compiled output moved from `lib/src/` to `lib/`; public package entry points now resolve from `lib/*`.
 * Development/build TypeScript upgraded to 6.x.
 
 ### Changed

@@ -82,11 +82,10 @@ describe("IFormattingService", () => {
 
             it("should use nb-NO to format values", () => {
                 const value: number = 100000.123;
-                const expectedResult: string = "100 000";
+                const expectedResult: string = "100\u00A0000";
 
                 const formattingService: IFormattingService = createFormattingService();
-                const result: string = formattingService.formatValue(value, "#,0", "nb-NO");
-                const actualResult: string = result.replace(/\s/g, " ");
+                const actualResult: string = formattingService.formatValue(value, "#,0", "nb-NO");
 
                 expect(actualResult).toBe(expectedResult);
             });
